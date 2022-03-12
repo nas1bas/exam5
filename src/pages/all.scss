@@ -1,0 +1,41 @@
+.all {
+    position: relative;
+    z-index: 2;
+    &__btns {
+        margin-top: 60px;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+    }
+
+    &__title {
+        text-align: center;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 36px;
+        color: #474747;
+    }
+}
+
+button {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f4f4f4;
+    border-radius: 3px;
+    padding: 10px;
+    border: 1px solid #e6dada;
+}
+
+@media only screen and (max-width: 360px) {
+    .all {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 15px;
+        &__btns {
+            position: absolute;
+            z-index: 1;
+            bottom: -410px;
+            left: 100px;
+        }
+    }
+}

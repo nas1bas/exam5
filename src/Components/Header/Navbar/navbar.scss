@@ -1,0 +1,22 @@
+.navbar {
+    &__list {
+        display: flex;
+        align-items: center;
+    }
+    &__link {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        text-transform: uppercase;
+        color: #9a9a9a;
+        padding: 15px;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    &__link-active {
+        color: #3d3d3d;
+        border-bottom: 2px solid #777777;
+    }
+}
+

@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+//style
+import { Route, Routes } from 'react-router-dom'
+import './App.scss'
+import Footer from './Components/Footer/footer'
+import Header from './Components/Header/header'
+import All from './pages/all'
+import Design from './pages/design'
+import Typography from './pages/typography'
+import UI from './pages/ui'
+import UX from './pages/ux'
+import InfoPost from './Components/infoPost/infoPost'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default function App() {
+    return (
+        <div className='app'>
+            <Header />
+            <Routes>
+                <Route path="/" element={<All />} />
+                <Route path="/info" element={<InfoPost />} />
+                <Route path="/design" element={<Design />} />
+                <Route path='/ui' element={<UI />} />
+                <Route path='/ux' element={<UX />} />
+                <Route path='/typography' element={<Typography />} />
+            </Routes>
+            <Footer />
+        </div>
+    )
 }
-
-export default App;

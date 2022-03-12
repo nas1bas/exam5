@@ -1,0 +1,19 @@
+.search {
+    display: flex;
+    align-items: center;
+}
+
+.search__input {
+    padding: 12px;
+    background: #f4f4f4;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+}
+
+.search__input--img {
+    margin-left: -40px;
+    padding: 12px;
+    background: #ffba9d;
+    border-radius: 3px;
+}
