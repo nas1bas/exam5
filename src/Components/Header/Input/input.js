@@ -1,3 +1,6 @@
+import { useRef } from 'react'
+import InputSearchHooks from '../../../Hooks/inputSearchHooks'
+
 //images
 import search from '../../../assets/img/search.png'
 
@@ -5,10 +8,15 @@ import search from '../../../assets/img/search.png'
 import './input.scss'
 
 export default function Input() {
+    const [, setInputSearch] = InputSearchHooks();
+    const inputSearch = useRef();
+
     return (
-        <div className="search">
-            <input className='search__input' type="search" placeholder="Search" />
+        <form className="form-search">
+            <input ref={inputSearch}
+                onChange={(evt) => setInputSearch(evt.target.value)}
+                className='search__input' type="search" placeholder="Search" />
             <img className='search__input--img' src={search} alt="search" width={16} />
-        </div>
+        </form>
     )
 }

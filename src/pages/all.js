@@ -3,57 +3,55 @@ import Posts from "../Components/Posts/post"
 
 //style
 import './all.scss'
+import ErrorPage from "./error"
 
 export default function All() {
 
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
     const [posts, setPosts] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
-    const [limitPosts, setLimitPosts] = useState(8)
+    const [start] = useState(0)
+
+    const postPerpage = 100
+    // const [hasPrev, setHasPrev] = useState(false)
+    // const [hasNext, setHasNext] = useState(false)
 
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/posts`)
+        fetch(`https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=${postPerpage}`)
             .then((res) => res.json())
             .then((data) => {
                 setLoading(false)
                 setPosts(data)
+                // if (data.length == postPerpage)
+                //     setHasNext(true)
+                // else setHasNext(false)
             })
             .catch((err) => {
-                setError(error)
+                <ErrorPage />
                 setLoading(false)
             })
     }, [])
 
+    // function prevClicked() {
+    //     setStart(start - postPerpage)
 
-    const indexOfLastPost = currentPage * limitPosts;
-    const indexOfFirstPost = indexOfLastPost - limitPosts;
-    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    //     if (start != 0)
+    //         setHasPrev(true)
+    //     else setHasPrev(false)
+    // }
 
-
-    const handlePrevBtn = (() => {
-
-        if (currentPage <= 1) {
-            return
-        } else {
-            return setCurrentPage(currentPage - 1)
-        }
-    })
-
-    const handleNextBtn = (() => {
-        if (currentPage) {
-            setCurrentPage(currentPage + 1)
-        }
-    })
+    // function nextClicked() {
+    //     setStart(start + postPerpage)
+    //     setHasPrev(true)
+    // }
 
     return (
         <div className="all">
             <h1 className="all__title">Recent Posts</h1>
-            <Posts posts={currentPosts} loading={loading} />
-            <div className="all__btns">
-                <button onClick={() => handlePrevBtn}>Prev</button>
-                <button onClick={() => handleNextBtn}>Next</button>
-            </div>
-        </div>
+            <Posts posts={posts} loading={loading} />
+            {/* <div className="all__btns">
+                <button enabled="{hasPrev}" onClick={prevClicked}>Prev</button>
+                <button enabled="{hasNext}" onClick={nextClicked}>Next</button>
+            </div> */}
+        </div >
     )
 }

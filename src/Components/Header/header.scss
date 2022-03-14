@@ -27,10 +27,11 @@
 }
 
 .modal {
+    top: -260px;
     border: none;
     box-shadow: 40px 35px 45px -10px rgba(62, 84, 102, 0.25);
     margin-top: 350px;
-    width: 300px;
+    width: 100vw;
     height: 300px;
     position: absolute;
     z-index: 2;
@@ -59,7 +60,7 @@
             display: none;
         }
     }
-    .search {
+    .form-search {
         margin-left: 60px;
         position: absolute;
         z-index: 1;

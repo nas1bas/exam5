@@ -1,49 +1,44 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import ErrorPage from "../../pages/error";
 
 //style 
 import './infoPage.scss'
 
-export default function InfoPost() {
+export default function InfoPage() {
 
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
-    const [posts, setPosts] = useState([])
+    const [post, setPost] = useState([])
+
+    const location = useLocation()
+    const { id } = location.state
 
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/posts`)
+        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 setLoading(false)
-                setPosts(data)
+                setPost(data)
             })
-            .catch((err) => {
-                setError(err)
-                setLoading(false)
+            .catch((error) => {
+                if (loading) {
+                    return <strong>LOADING...</strong>
+                } else if (error) {
+                    return <ErrorPage />
+                }
             })
     }, [])
 
-    if (loading) {
-        return <strong>LOADING...</strong>
-    } else if (error) {
-        return <strong>ERROR...</strong>
-    }
+
 
     return (
         <div>
             <h1>
                 Information
             </h1>
-            {posts.length > 0 && <ul className="user-list">
-                {posts.map((post) => (
-                    <li className="user-link" key={post.userId}>
-                        {post.body}
-                    </li>
-                ))}
-            </ul>}
-            <h4>
-                <Link className="home" to="/">Go to Home </Link>
-            </h4>
+            <p>{post.body}</p>
+            <Link className="home" to="/">Go to Home </Link>
+
         </div>
     )
 }
